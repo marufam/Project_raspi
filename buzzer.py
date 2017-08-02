@@ -5,7 +5,7 @@ import os;
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(3, GPIO.OUT)
-GPIO.output(3, 1)
+GPIO.setup(8, GPIO.OUT)
+GPIO.output(8, 1)
 time.sleep(3)
-GPIO.output(3, 0)
+GPIO.output(8, 0)

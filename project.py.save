@@ -1,0 +1,49 @@
+import RPi.GPIO as GPIO
+import Adafruit_DHT as dht
+import time  
+import os
+import urllib
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(11, GPIO.OUT)
+GPIO.setup(37, GPIO.IN)
+GPIO.setup(15, GPIO.OUT)
+GPIO.setup(13, GPIO.OUT)
+
+
+while True:
+	h, t = dht.read_retry(dht.DHT22, 17)
+	#os.system('date')
+	print('temp={0:0.1f}*C hum:{1:0.1f}%'.format(t, h))
+	#url="http://10.42.0.210/Tea_Pi/proses.php?h="+str(h)+
+	#response = urllib.urlopen(url).read()
+	#print(response)
+	if ((GPIO.input(37)) == 1 or (t > 30)):
+		print "garing"
+		GPIO.output(15, 0)
+		GPIO.output(13, 0)
+
+	else:
+		print "teles"
+		GPIO.output(15, 1)
+		GPIO.output(13, 1)
+		#if (t > 30):
+                #        GPIO.output(15, GPIO.LOW)
+                #        GPIO.output(13, GPIO.LOW)
+               # else (t < 30):
+               #         GPIO.output(15, GPIO.HIGH)
+               #         GPIO.output(13, GPIO.HIGH)
+
+
+ 	
+	#if (t > 30):
+	#	GPIO.output(15, GPIO.LOW)
+	#	GPIO.output(13, GPIO.LOW)
+	#if (t < 30):
+	#	GPIO.output(15, GPIO.HIGH)
+	#	GPIO.output(13, GPIO.HIGH)
+	#GPIO.cleanup()
+	time.sleep(1)
+
+
