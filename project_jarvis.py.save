@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO ## Import GPIO library
 import time ## Import 'time' library. Allows us to use 'sleep'
 import requests as requests
 import json as json
-#from servo_import import open, close
+from servo_import import open, close
 
 GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
 GPIO.setup(8, GPIO.OUT) ## Setup GPIO Pin 7 to OUT
@@ -37,8 +37,8 @@ while 1:
 	#	buff=1
 	jumlah_tool= len(r.json()['tools'])-1
 	for i in range(0, jumlah_tool):
-		#print i
-		#time.sleep(1)
+		print i
+		time.sleep(1)
 		#print r.json()['tools'][i]['name']
 		gpio = int(r.json()['tools'][i]['gpio'])
 		if(r.json()['tools'][i]['status']=='1'): #LED
